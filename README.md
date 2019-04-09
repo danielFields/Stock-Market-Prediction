@@ -11,3 +11,4 @@ Credits to Hull Tactical for the dataset provided and UCSB's PSTAT Department fo
 
 This project pivoted from a group contest to an personal explaration into using LSTM's.
 
+This project was done using the Python3 Kernel in a Jupyter Notebook.
