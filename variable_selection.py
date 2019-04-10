@@ -34,13 +34,17 @@ data2.info()
 X = data2.drop(["CLOSE"], axis = 1)
 y = data2["CLOSE"]
 
+#Split design matrix and target into training and testing splits and reshape for modeling
+X_trn = X.head(int(0.8*X.shape[0])).values.reshape(int(0.8*X.shape[0]),X.shape[1],1)
+X_tst = X.tail(int(0.2*X.shape[0])).values.reshape(int(0.2*X.shape[0]),X.shape[1],1)
+
 #Scale Design Matrix
 scaler = MinMaxScaler()
 X_scaled = scaler.fit_transform(X)
 
-#Split design matrix and target into training and testing splits and reshape for modeling
-X_trn = X.head(int(0.8*X.shape[0])).values.reshape(int(0.8*X.shape[0]),X.shape[1],1)
-X_tst = X.tail(int(0.2*X.shape[0])).values.reshape(int(0.2*X.shape[0]),X.shape[1],1)
+#Split scaled design matrix and target into training and testing splits and reshape for modeling
+X_trn_scaled = X_scaled.head(int(0.8*X_scaled.shape[0])).values.reshape(int(0.8*X_scaled.shape[0]),X_scaled.shape[1],1)
+X_tst_scaled = X_scaled.tail(int(0.2*X_scaled.shape[0])).values.reshape(int(0.2*X_scaled.shape[0]),X_scaled.shape[1],1)
 
 y_trn = y.head(int(0.8*X.shape[0])).values
 y_tst = y.tail(int(0.2*X.shape[0])).values
