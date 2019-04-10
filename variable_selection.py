@@ -38,8 +38,9 @@ y = data2["CLOSE"]
 X_trn = X.head(int(0.8*X.shape[0])).values.reshape(int(0.8*X.shape[0]),X.shape[1],1)
 X_tst = X.tail(int(0.2*X.shape[0])).values.reshape(int(0.2*X.shape[0]),X.shape[1],1)
 
-#Scale Design Matrix
+#Create instance of MinMaxScalar from sklearn
 scaler = MinMaxScaler()
+#Scale Design Matrix
 X_scaled = scaler.fit_transform(X)
 
 #Split scaled design matrix and target into training and testing splits and reshape for modeling
