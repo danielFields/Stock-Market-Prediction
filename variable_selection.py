@@ -19,10 +19,9 @@ data2 = data1.replace({'DVY': {np.nan:np.mean(data1["DVY"])}, 'CATY': {np.nan:np
 num_NA2 = pd.DataFrame()
 num_NA2["Num_NA"] = data2.isnull().sum(axis = 0)
 num_NA2["Proportion_NA"] = np.round((num_NA2["Num_NA"]*100)/len(data1["CLOSE"]),3)
-num_NA2.query("Proportion_NA < 2").sort_values("Proportion_NA", ascending = False)
-
+no_NA = num_NA2.query("Proportion_NA < 2").index
 #Variable Selection: select variables that are within NA tolerance
-data2 = data2[num_NA2.query("Proportion_NA < 2").index]
+data2 = data2[no_NA]
 
 #Examine design matrix for modeling
 data2.info()
