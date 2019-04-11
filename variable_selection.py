@@ -21,6 +21,8 @@ num_NA2["Num_NA"] = data2.isnull().sum(axis = 0)
 num_NA2["Proportion_NA"] = np.round((num_NA2["Num_NA"]*100)/len(data1["CLOSE"]),3)
 num_NA2.query("Proportion_NA < 2").sort_values("Proportion_NA", ascending = False)
 
+#Variable Selection: select variables that are within NA tolerance
+data2 = data2[num_NA2.query("Proportion_NA < 2").index]
 
 #Examine design matrix for modeling
 data2.info()
