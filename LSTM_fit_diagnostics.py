@@ -13,4 +13,14 @@ tensorboard_callback = tf.keras.callbacks.TensorBoard(logdir, histogram_freq=1)
 %tensorboard --logdir logs
 
 #Train the model
-model.fit(X_trn,y_trn, epochs=1000,batch_size = 4153,validation_split = 0.2, callbacks=[tensorboard_callback], verbose = 0)
+history = model.fit(X_trn,y_trn, epochs=1000,batch_size = 4153,validation_split = 0.2, callbacks=[tensorboard_callback], verbose = 0)
+
+#Visualize the training
+plt.plot(history.history["loss"])
+
+#Predict and Evaluate Predictions
+preds = model.predict(X_tst)
+plt.plot(preds, label = "Predicted")
+plt.plot(y_tst, label = "Actual")
+plt.legend()
+plt.show()
